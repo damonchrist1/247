@@ -1,0 +1,111 @@
+24/7 Free Hosting with Repl.it
+How do I get free 24/7 hosting with replit? Here's how.
+
+If this repository helps you in any way, give it a ⭐:
+
+
+⚠️ Warning: This only works for Node.JS or HTML, CSS, JS repls.
+
+💡 Tip: repl.it is great for testing out projects before lauching to the masses.
+
+Index
+Creating a Repl
+Hosting
+Install Packages
+index.js
+server.js
+Run It
+UptimeRobot
+Profit
+Creating a Repl
+Assuming you've already created a replit account, let's make a repl:
+
+💡 Tip: If you already have a repl, go to the next section.
+
+Go to replit.com/~
+Create a repl by clicking the ➕ sign under the 'Create' section:
+
+Select Node.JS as your template (or HTML, CSS, JS for a site):
+
+For Node.JS 16+, fork this repl instead of creating a new one!
+
+Give it a name, or stick with the one that is auto generated:
+
+Click "Create Repl":
+
+Hosting
+Install Packages
+Run npm init -y in the Shell
+Run this in the Shell to install the dependencies:
+npm install express ping-monitor
+⚠️ Warning: It is very important that you use the Shell tab for this:
+
+
+
+If you are on mobile, then you probably won't see the Shell tab, in that case, go into "View Desktop Mode". Learn how below:
+
+for Android click here
+for iOS (iPhone) click here
+After that, you should be able to access Shell as normal. When you are done using the Shell, I recommend going back to regular view, as the sizing of the page gets a bit weird on Desktop mode.
+
+index.js
+Put this code in your index.js file for the Node.JS template, or script.js for the HTML, CSS, JS template:
+
+const keepAlive = require('./server');
+const Monitor = require('ping-monitor');
+
+keepAlive();
+const monitor = new Monitor({
+    website: '',
+    title: 'NAME',
+    interval: 2
+});
+
+monitor.on('up', (res) => console.log(`${res.website} its on.`));
+monitor.on('down', (res) => console.log(`${res.website} it has died - ${res.statusMessage}`));
+monitor.on('stop', (website) => console.log(`${website} has stopped.`) );
+monitor.on('error', (error) => console.log(error));
+💡 Tip: If you already have code in your index.js file, just put this code at the bottom of the code, or where ever you feel it looks best.
+
+server.js
+Create a file called server.js:
+
+
+
+Paste-in this code:
+
+const express = require('express');
+const server = express();
+
+server.all('/', (req, res) => {
+    res.send('<h2>Server is ready!</h2>');
+});
+
+module.exports = () => {
+    server.listen(4000, () => {
+        console.log('Server Ready.');
+    });
+    return true;
+}
+💡 Tip: See where I put 4000, it is recommended you change that if you are using multiple repls. For example, you can do 1000, 2000, 3000, or whatever else. This is just a port.
+
+Run It
+Click the 'Run' button:
+
+
+UptimeRobot
+We will be using UptimeRobot as the monitoring system.
+
+Copy the URL of the website that shows when you run the repl. If you are on mobile, this will be on the "Output" tab; on Desktop, you'll see it in the upper right corner of your screen: 
+Go to uptimerobot.com and create a new account:
+
+
+Don't forget to check your email!
+After clicking the link in your email, it should take you to the dashboard. Here, you can create a new monitor:
+
+Select these settings, then save (you'll need to double click the "Create Monitor" button):
+
+"https://replname.yourusername.repl.co" should be replaced with the URL we copied from our repl earlier.
+Profit
+Run your repl, and now your bot/website/project will be hosted 24/7. Note that this is free hosting, so obviously it isn't perfect. But it is certainly good enough to experiment with!
+Good luck and have fun building your project.
